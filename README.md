@@ -23,5 +23,5 @@ docker run -d --name backend -p 8080:8080 --link db:db inteca/family-backend
    ```bash
 docker run -d --name frontend --link backend:backend -p 80:80 inteca/family-frontend
  ```
- 5. Go to [localhost:80](http://localhost:80)
+ 5. Go to [localhost:80](http://localhost:80) (If you are using Docker Toolbox, replace localhost with machine ip, usually 192.168.99.100)
  
