@@ -7,7 +7,7 @@
 - Installed [Maven](https://maven.apache.org/)
 
 ## Building and running
-1. Go to project folder and build project using :
+1. Go to project folder and build it using :
  ```bash
  mvn clean package
  ```
