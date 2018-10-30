@@ -1,0 +1,25 @@
+<div *ngIf="family$ | async as family" fxLayout="row" style="margin: 20px" fxLayoutGap="40px">
+  <div fxFlex="30">
+    <h2>Father</h2>
+    <mat-card>
+      <p><strong>PESEL:&nbsp;</strong>{{family.father.pesel}}</p>
+      <p><strong>First name:&nbsp;</strong>{{family.father.firstName}}</p>
+      <p><strong>Second name:&nbsp;</strong>{{family.father.secondName}}</p>
+      <p><strong>Birth date:&nbsp;</strong>{{family.father.birthDate | date}}</p>
+    </mat-card>
+  </div>
+  <div fxFlex="70">
+    <h2>Children</h2>
+    <div fxLayout="row wrap" fxLayoutGap="10px grid" style="height: 100%">
+      <div fxFlex="45" *ngFor="let child of family.children">
+        <mat-card >
+          <p><strong>PESEL:&nbsp;</strong>{{child.pesel}}</p>
+          <p><strong>First name:&nbsp;</strong>{{child.firstName}}</p>
+          <p><strong>Second name:&nbsp;</strong>{{child.secondName}}</p>
+          <p><strong>Sex:&nbsp;</strong>{{child.sex}}</p>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>

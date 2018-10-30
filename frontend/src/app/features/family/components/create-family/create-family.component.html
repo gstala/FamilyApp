@@ -1,0 +1,64 @@
+<mat-horizontal-stepper #stepper style="background-color: #fafafa">
+  <mat-step [stepControl]="fatherFormGroup">
+    <form [formGroup]="fatherFormGroup">
+      <ng-template matStepLabel disabled="true">Fill out father's data</ng-template>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <mat-form-field>
+          <input matInput placeholder="First name" formControlName="firstNameCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Second name" formControlName="secondNameCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input min="11" max="11" matInput placeholder="PESEL" formControlName="peselCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="Birth date" formControlName="birthDateCtrl" required>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button matStepperNext color="accent">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="childFormGroup">
+    <form [formGroup]="childFormGroup">
+      <ng-template matStepLabel>Fill out children's data</ng-template>
+      <div fxLayout="column" fxLayoutGap="10px">
+        <mat-form-field>
+          <input matInput placeholder="First name" formControlName="firstNameCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Second name" formControlName="secondNameCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="PESEL" formControlName="peselCtrl" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Sex" required formControlName="sexCtrl">
+            <mat-option *ngFor="let sex of sexes" [value]="sex">
+              {{sex | titlecase }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+        <button mat-raised-button color="accent" [disabled]="!childFormGroup.valid" (click)="addChild()">Add child</button>
+        <button mat-raised-button color="accent" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Confirmation</ng-template>
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="50px" style="margin-top: 20px">
+      <p style="font-size: 28px">Save family?</p>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+        <button mat-raised-button color="accent" [disabled]="!fatherFormGroup.valid || children.length === 0" (click)="saveFamily()">Save</button>
+      </div>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
